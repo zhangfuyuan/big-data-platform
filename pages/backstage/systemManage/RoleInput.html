@@ -1,0 +1,141 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- 角色录入页面 -->
+<div id="page-wrapper" class="roleInput-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">角色录入
+                <small class="pull-right" id="roleInputHeader-btn">
+                    <button type="button" class="btn btn-primary fontSize18">角色删除</button>
+                    <button type="button" class="btn btn-primary fontSize18">角色修改</button>
+                    <button type="button" class="btn btn-primary fontSize18">角色添加</button>
+                </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-search-plus fa-fw"></i> 角色查询
+                </div>
+
+                <div class="panel-body roleQuery">
+                    <div class="well well-sm">
+                        <table>
+                            <tr class="text-center">
+                                <td class="fontSize16">角色姓名：</td>
+                                <td>
+                                    <input type="text" class="form-control" id="roleNameInput" value="" placeholder="请输入需要查询的名字" />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-default fontSize16" id="roleQueryBtn">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 角色列表
+                </div>
+
+                <div class="panel-body" id="roleListBody">
+                    <table class="display table table-striped table-bordered" cellspacing="0" width="100%" id="roleListTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>角色名称</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                "ajax": "../../server/tableData.json",
+                "table": "#roleListTable",
+                "fields": [ {
+                    "label": "First name:",
+                    "name": "first_name"
+                }, {
+                    "label": "Last name:",
+                    "name": "last_name"
+                }
+                ]
+            } );
+
+            // New record
+            $('#roleInputHeader-btn').on('click', '.btn', function (e) {
+                e.preventDefault();
+
+                editor.create( {
+                    title: '进行角色录入的操作',
+                    buttons: '完成'
+                } );
+            } );
+
+            var roleListTable = $('#roleListTable').DataTable( {
+                ordering: false,
+                ajax: "../../server/tableData.json",
+                columns: [
+                    {
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+                        orderable: false
+                    },
+                    { data: null, render: function ( data, type, row ) {
+                        // Combine the first and last names into a single table field
+                        return data.first_name+' '+data.last_name;
+                    } }
+                ]
+            } );
+
+            /* 隐藏搜索框 */
+            $('.dataTables_filter').css('display', 'none');
+
+            /* 可多行选择 */
+            $('#roleListTable tbody').on( 'click', 'tr', function () {
+                $(this).toggleClass('selected');
+            } );
+
+            /* 查询名字 */
+            $('#roleQueryBtn').on( 'click', function () {
+                var $input = $('#roleNameInput');
+                if($input.val()){
+                    roleListTable.search( $input.val() ).draw();
+                } else {
+                    alert('输入不能为空！');
+                }
+            } );
+        });
+
+    })();
+</script>

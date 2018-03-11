@@ -1,0 +1,130 @@
+<script src="../../vendor/echarts/theme/macarons.js"></script>
+
+<!-- 数据服务首页正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">数据服务首页</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据服务情况统计
+                </div>
+
+                <div class="panel-body" id="dataServicesBox">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#serviceStatistics-pieBody" data-toggle="tab" id="SSBtn">服务方式统计</a>
+                        </li>
+
+                        <li>
+                            <a href="#dataServiceStatistics-pieBody" data-toggle="tab" id="DSSBtn">数据服务情况统计</a>
+                        </li>
+
+                        <li>
+                            <a href="#dataServiceRanking-barBody" data-toggle="tab" id="DSRBtn">数据服务排名</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content" id="tabContBox">
+                        <div class="tab-pane fade in active" id="serviceStatistics-pieBody">
+                            <div id="serviceStatistics-pieChart" style="width:100%;max-width:1560px;height:500px"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="dataServiceStatistics-pieBody">
+                            <div id="dataServiceStatistics-pieChart" style="width:100%;max-width:1560px;height:500px"></div>
+                        </div>
+
+                        <div class="tab-pane fade" id="dataServiceRanking-barBody">
+                            <div id="dataServiceRanking-barChart" style="width:100%;max-width:1560px;height:450px"></div>
+
+                            <p id="dataServiceRanking-btnBox">
+                                <button type="button" class="btn btn-info">综合</button>
+                                <button type="button" class="btn btn-default">API访问</button>
+                                <button type="button" class="btn btn-default">FTP推送</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        /* 服务方式统计饼状图 */
+        var serviceStatisticsChart = new MyEcharts({
+            DOMId: 'serviceStatistics-pieChart',
+            option: {
+                legendDataList: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
+                isPie: true,
+                pieAxisDataKey: 'way',
+                series: [
+                    {
+                        name: '访问来源',
+                        type: 'pie',
+                        dataKey: 'val'
+                    }
+                ],
+                legendX: 'center',
+                tooltipTrigger: 'item',
+                tooltipFormatter: "{a} <br/>{b} : {c} ({d}%)",
+                calculable: true,
+                legendOrient: 'horizontal'
+            },
+            dataUrl: '../../server/serviceStatisticsData.json',
+            theme: 'macarons'
+        });
+
+        var $tabContBox = $('#tabContBox');
+
+        /* 数据服务情况统计饼状图 */
+        $('#dataServiceStatistics-pieChart').width($tabContBox.width());   // 解决B3tab组件与echarts产生bug
+        var dataServiceStatisticsChart = new MyEcharts({
+            DOMId: 'dataServiceStatistics-pieChart',
+            option: {
+                legendDataList: ['服务1','服务2','服务3','服务4'],
+                isPie: true,
+                pieAxisDataKey: 'way',
+                series: [
+                    {
+                        name: '服务类型',
+                        type: 'pie',
+                        dataKey: 'val'
+                    }
+                ],
+                legendX: 'center',
+                tooltipTrigger: 'item',
+                tooltipFormatter: "{a} <br/>{b} : {c} ({d}%)",
+                calculable: true,
+                legendOrient: 'horizontal'
+            },
+            dataUrl: '../../server/dataServiceStatisticsData.json',
+            theme: 'macarons'
+        });
+
+        /* 数据服务排名柱形图 */
+        $('#dataServiceRanking-barChart').width($tabContBox.width());   // 解决B3tab组件与echarts产生bug
+        var dataServiceRankingChart = initDSRChart();
+
+        /* 数据服务首页数据服务排名-底部控制按钮切换效果 */
+        $('#dataServiceRanking-btnBox').on('click', '.btn', function () {
+            var txt = $(this).text();
+            $(this).addClass('btn-info').siblings().removeClass('btn-info').addClass('btn-default');
+
+            dataServiceRankingChart._disposeChart();
+            dataServiceRankingChart = initDSRChart(txt, changeDSRChart(txt));
+        });
+
+    })();
+</script>
+
+

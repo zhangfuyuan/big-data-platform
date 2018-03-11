@@ -1,0 +1,407 @@
+/*
+===================================================
+    b-后台公共模块（即前台的“平台管理”模块）样式
+===================================================
+/* dataTables列内容、表头居中 */
+#mybody .table>tbody>tr>td, #mybody .table>thead:first-child>tr:first-child>th{
+    text-align: center;
+}
+
+#mybody table.dataTable thead .sorting, #mybody table.dataTable thead .sorting_asc, #mybody table.dataTable thead .sorting_desc {
+    background-image: none;
+}
+
+#mybody .navbar-right {
+    margin-right: 15px \9;
+}
+
+#myNav>.nav>li>a {
+    padding: 15px;
+}
+
+/*
+===================================================
+    b1-后台首页
+===================================================
+*/
+.BSIndex-shortcutTitle {
+    font-size: 30px;
+}
+
+#dataAccessClassify-btnBox {
+    width: 100%;
+    text-align: center;
+}
+
+#dataAccessClassify-btnBox span {
+    width: 10%;
+    font-size: 16px;
+}
+
+#dataAccessClassify-btnBox button {
+    width: 8%;
+}
+
+#BINowTimeBox {
+    margin-bottom: 0;
+}
+
+#BIDateInput {
+    display: inline-block;
+    width: inherit;
+}
+
+/*
+===================================================
+    b2.1-数据服务首页
+===================================================
+*/
+#dataServiceRanking-btnBox {
+    width: 100%;
+    text-align: center;
+}
+
+#dataServiceRanking-btnBox button {
+    width: 10%;
+}
+#dataServicesBox .nav {
+    margin-bottom: 15px;
+}
+
+#dataServicesBox .nav-tabs>li>a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*
+===================================================
+    b2.3-数据接入页面
+===================================================
+*/
+#dataAccessBox .nav {
+    margin-bottom: 15px;
+}
+
+#dataAccessBox .nav-tabs>li>a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*
+===================================================
+    b3.1-数据管理首面
+===================================================
+*/
+#dataManageBox .nav {
+    margin-bottom: 15px;
+}
+
+#dataManageBox .nav-tabs>li>a {
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/*
+===================================================
+    b3.2-数据存储页面
+===================================================
+*/
+#inputCatalogType {
+    display: inline-block;
+    width: 50%;
+}
+
+#catalogConfigForm .clearPaddingTop {
+    padding-top: 0;
+    padding-bottom: 5px;
+}
+
+input#inputSharedIdentity, input#inputLargestSpace {
+    width: 50%;
+    display: inline-block;
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+input#inputSharedIdentity:focus, input#inputLargestSpace:focus {
+    border-color: #66afe9;
+}
+
+/*
+===================================================
+    b3.3-Hive数据管理
+===================================================
+*/
+#mybody .DTE_Label {
+    width: 25%;
+}
+
+#mybody .DTE_Field_Input {
+    float: left;
+    width: 70%;
+}
+
+#mybody .DTE_Field_Need {
+    float: left;
+    width: 5%;
+    padding-left: 5px;
+    padding-top: 6px;
+    margin-bottom: 5px;
+}
+
+/*
+===================================================
+    b4.1-数据权限管理
+===================================================
+*/
+#DataAdminManageContainer div.DTE_Inline input {
+    border: none;
+    background-color: transparent;
+    padding: 0 !important;
+    font-size: 90%;
+}
+
+#DataAdminManageContainer div.DTE_Inline input:focus {
+    outline: none;
+    background-color: transparent;
+}
+
+/*
+===================================================
+    b4.2-Hive安全管理
+===================================================
+*/
+#HiveSafetyManageForm div.form-control{
+    border: 0;
+}
+
+/*
+===================================================
+    b4.3-日志管理
+===================================================
+*/
+#logClassificationSelection, div.logDateSelection  {
+    text-align: center;
+}
+
+#logClassificationSelection {
+    margin-bottom: 15px;
+}
+
+div.logDateSelection .fl {
+    float: left;
+}
+
+div.logDateSelection .fr {
+    float: right;
+}
+
+div.logDateSelection {
+    width: 90%;
+    margin: 0 auto;
+    overflow: hidden;
+}
+
+div.logDateSelection div.startTimeBox, div.logDateSelection div.endTimeBox {
+    width: 40%;
+}
+
+div.logDateSelection .input-group {
+    width: 75%;
+}
+
+div.logDateSelection label {
+    width: 25%;
+    text-align: center;
+}
+
+div.logDateSelection .paddingTop {
+    padding-top: 7px;
+}
+
+div.logDateSelection div.lineBox {
+    padding: 0 3% 0 6%;
+}
+
+div.logDateSelection div.lineBox span {
+    display: block;
+    width: 100%;
+    height: 34px;
+    line-height: 34px;
+}
+
+#logDateSelection>table {
+    width: 80%;
+    margin: 0 auto;
+}
+
+#LMDateSelBox {
+    width: 100%;
+}
+
+/*
+===================================================
+    b6.1-角色录入
+===================================================
+*/
+.roleQuery .well {
+    margin-bottom: 0;
+}
+
+.roleQuery table, .roleQuery table tr {
+    width: 100%;
+    height: 50px;
+}
+
+.roleQuery table tr>td>input.form-control {
+    width: 50%;
+    font-size: 16px;
+}
+
+/*
+===================================================
+    b6.2-角色配置
+===================================================
+*/
+#roleConfigBody .table-bordered, #roleConfigTable tr, #roleConfigTable tr th, #roleConfigTable tr td {
+    border-color: #337AB7;
+}
+
+#roleConfigTable, #roleConfigTable tr {
+    width: 100%;
+}
+
+#roleConfigTable thead, #roleConfigTable tfoot {
+    background-color: #5BC0DE;
+}
+
+#roleConfigTable {
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+#roleTd, #treeTd, #dbRightTd {
+    vertical-align: middle;
+}
+
+#roleTd, #treeTd {
+    width: 45%;
+    background-color: #f5f5f5;
+}
+
+#dbRightTd {
+    width: 10%;
+}
+
+#treeTd {
+    padding: 0;
+}
+
+#treeBody {
+    text-align: left;
+}
+
+#treeBody s.checkbox-inline {
+    height: 22px;
+}
+
+#treeBody s.checkbox-inline label {
+    padding-left: 0;
+    margin-bottom: 5px;
+    vertical-align: baseline;
+    max-width: none;
+}
+
+/*
+===================================================
+    b6.3-用户管理
+===================================================
+*/
+
+.userQuery .well {
+    margin-bottom: 0;
+}
+
+.userQuery table, .userQuery table tr {
+    width: 100%;
+    height: 50px;
+}
+
+.userQuery table tr>td>input.form-control {
+    font-size: 16px;
+}
+
+/*
+===================================================
+    b6.4-节点管理
+===================================================
+*/
+
+.nodeQuery .well {
+    margin-bottom: 0;
+}
+
+.nodeQuery table, .nodeQuery table tr {
+    width: 100%;
+    height: 50px;
+}
+
+.nodeQuery table tr>td>input.form-control {
+    font-size: 16px;
+}
+
+/*
+===================================================
+    b6.5-操作管理
+===================================================
+*/
+
+.infoQuery .well {
+    margin-bottom: 0;
+}
+
+.infoQuery table, .infoQuery table tr {
+    width: 100%;
+    height: 50px;
+}
+
+.infoQuery table tr>td>input.form-control {
+    font-size: 16px;
+}
+
+#infoDateSelection .fl {
+    float: left;
+}
+
+#infoDateSelection div {
+    width: 87.3%;
+}
+
+
+
+/***************************************************** 兼容ie10+ *****************************************************/
+@media screen and(-ms-high-contrast:active),(-ms-high-contrast:none) {
+
+    /*
+    ===================================================
+        b1-后台首页
+    ===================================================
+    */
+    #mybody .navbar-right {
+        margin-right: 15px;
+    }
+
+}

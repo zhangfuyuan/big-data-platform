@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>湛江移动大数据平台</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../vendor/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- 自己修改的（公共+前台）样式文件 -->
+    <link href="../../dist/css/base.css" rel="stylesheet" type="text/css">
+    <link href="./frontDesk.css" rel="stylesheet" type="text/css">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../vendor/ie8-responsive-file-warning.js"></script><![endif]-->
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../vendor/html5shiv.min.js"></script>
+      <script src="../../vendor/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body id="frontDesk">
+
+    <!-- 顶部导航栏 -->
+    <div class="navbar">
+        <!-- 顶部信息 -->
+        <div class="myNav-wrapper myTopbarBox fontSize16">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <ul class="list-inline">
+                            <li class="myTopbarBox-firstLi">
+                                <a href="#####">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    <span class="username">***</span>，欢迎您！
+                                </a>
+                            </li>
+                            <li class="">
+                                <a href="#####">
+                                    <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                                    个人中心
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul class="list-inline text-right">
+                            <li>
+                                <a href="####">
+                                    <span class="glyphicon glyphicon-globe" aria-hidden="true"></span>
+                                    外部门户
+                                </a>
+                            </li>
+                            <li>
+                                <a href="####">
+                                    <span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>
+                                    申告中心
+                                </a>
+                            </li>
+                            <li>
+                                <a href="####">
+                                    <span class="glyphicon glyphicon-bullhorn" aria-hidden="true"></span>
+                                    消息中心
+                                </a>
+                            </li>
+                            <li>
+                                <a href="####">
+                                    <span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
+                                    系统设置
+                                </a>
+                            </li>
+                            <li class="clearLastLiRight">
+                                <a href="####">
+                                    <span class="glyphicon glyphicon-off" aria-hidden="true"></span>
+                                    退出
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- logo和导航 -->
+        <div class="myNav-wrapper myNavBox">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <ul class="ul-logo">
+                            <li class="clearFirstLiLeft pull-left">
+                                <img src="../../dist/images/cm-logo.jpg" class="img-logo" alt="logo" />
+                            </li>
+                            <li class="ul-logo-last clearLastLiRight pull-left">
+                                <h2>湛江移动大数据平台</h2>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-md-8">
+                        <nav>
+                            <ul id="myTab" class="nav masthead-nav nav-tabs">
+                                <li class="active clearFirstLiLeft"><a href="./index.html" class="fontSize18">首页</a></li>
+                                <li class=""><a href="####" data-toggle="tab" class="fontSize18" id="loadIntelligenceReportBtn">智能报表</a></li>
+                                <li class=""><a href="####" data-toggle="tab" class="fontSize18" id="loadSelfAnalysisBtn">自助分析</a></li>
+                                <li class="dropdown">
+                                    <a href="#" class="dropdown-toggle fontSize18" id="drop1" role="button" data-toggle="dropdown">下载中心 <span class="caret"></span></a>
+                                    <ul class="dropdown-menu" role="menu" aria-labelledby="drop1">
+                                        <li><a href="#" class="fontSize16">下载地址1</a></li>
+                                        <li><a href="#" class="fontSize16">下载地址2</a></li>
+                                        <li role="separator" class="divider fontSize16"></li>
+                                        <li><a href="#" class="fontSize16">更多下载地址</a></li>
+                                    </ul>
+                                </li>
+                                <li class=""><a href="####" data-toggle="tab" class="fontSize18" id="loadAppCenterBtn">应用中心</a></li>
+                                <li class="clearLastLiRight"><a href="../backstage/index.html" class="fontSize18">平台管理 <span class="glyphicon glyphicon-wrench" aria-hidden="true"></span></a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 搜索栏 -->
+        <div class="myNav-wrapper mySearchBox">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="collapse navbar-collapse fontSize16" id="searchBody">
+                            <ul class="nav navbar-nav">
+                                <li class="dropdown text-center" id="allSearchBox">
+                                    <a href="#" class="dropdown-toggle fontSize16" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">全部 <span class="caret"></span></a>
+                                    <ul class="dropdown-menu">
+                                        <li><a href="#">Action</a></li>
+                                        <li><a href="#">Another action</a></li>
+                                        <li><a href="#">Something else here</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">Separated link</a></li>
+                                        <li role="separator" class="divider"></li>
+                                        <li><a href="#">One more separated link</a></li>
+                                    </ul>
+                                </li>
+
+                                <li id="searchBtnBox">
+                                    <form class="navbar-form navbar-left">
+                                        <div class="form-group">
+                                            <input type="text" class="form-control" placeholder="Search"><button type="submit" class="btn btn-primary fontSize18">
+                                                <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                搜索
+                                            </button>
+                                        </div>
+                                    </form>
+                                </li>
+
+                                <li id="advancedSearchBox" class="">
+                                    <a href="####" class="fontSize16">
+                                        高级搜索
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <ul class="list-inline text-right ul-hotSearch">
+                            <li class="fontSize16">
+                                热门搜索：
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">新增客户数</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">终端洞察</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">一经</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">微信</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">客户标签库</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">出账</a>
+                            </li>
+                            <li>
+                                <a href="####" class="fontSize16">地市集市</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 页面正文 -->
+    <div class="myContainerBox">
+        <div class="container">
+            <!-- 页面正文模块 -->
+            <div class="container-wrapper">
+                <!-- 当前位置模块 -->
+                <div class="indexBody">
+                    <div class="row">
+                        <ol class="breadcrumb" id="indexList">
+                            当前位置：
+                            <li class="changeIndex"><a href="./index.html" class="">首页</a></li>
+                        </ol>
+                    </div>
+                </div>
+
+                <!-- 页面切换模块 -->
+                <div id="switchPageBody" class="contentBody">
+                    <div id="fontDeskIndexContent">
+                        <!-- 首页页面正文内容 -->
+                        <div class="row">
+                            <div class="col-md-3 change-clo-paddingRight">
+                                <div class="containerBox" id="collectReportBox">
+                                    <div class="blueHeader">
+                                        <h4>收藏报表</h4>
+                                    </div>
+
+                                    <div class="blueContainer">
+
+                                    </div>
+                                </div>
+
+                                <div class="containerBox" id="collectAppliedBox">
+                                    <div class="blueHeader">
+                                        <h4>收藏应用</h4>
+                                    </div>
+
+                                    <div class="blueContainer">
+
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9 change-clo-paddingLeft">
+                                <div class="containerBox" id="indexBigImgBox">
+                                    <img src="../../dist/images/fd-index-bigImg.jpg" class="img-responsive img-big" alt="首页大图" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 change-clo-paddingRight">
+                                <div class="containerBox" id="latestAccessReportBox">
+                                    <div class="blueHeader">
+                                        <h4>最近访问报表</h4>
+                                    </div>
+
+                                    <div class="blueContainer">
+                                        <ul class="list-unstyled">
+                                            <li>
+                                                <a href="####">行业纬度细分客户和收入报表</a>
+                                            </li>
+                                            <li>
+                                                <a href="####">整体发展情况（市公司）</a>
+                                            </li>
+                                            <li>
+                                                <a href="####">行业应用代码审批结果预览</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9 change-clo-paddingLeft">
+                                <div class="containerBox" id="latestOnlineBox">
+                                    <div class="blackHeader">
+                                        <div>
+                                            <h4>最新上线</h4>
+                                        </div>
+                                    </div>
+
+                                    <div class="blackContainer">
+                                        <ul class="list-inline ul-latestOnline">
+                                            <li class="pull-left ul-latestOnline-first">
+                                                <a href="####"><span class="glyphicon glyphicon-circle-arrow-left fontSize28" aria-hidden="true"></span></a>
+                                            </li>
+
+                                            <li class="li-latestOnline">
+                                                <div class="hideUl">
+                                                    <ul class="list-inline ul-latestOnlineContainer">
+                                                        <li>
+                                                            <a href="####">
+                                                                <div class="latestOnlineImgBox"><img src="../../dist/images/fd-index-tagIcon.jpg" class="img-responsive img-latestOnline" alt="客户标签库" /></div>
+                                                                <p class="text-center">客户标签库</p>
+                                                            </a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="####">
+                                                                <div class="latestOnlineImgBox"><img src="../../dist/images/fd-index-tagIcon.jpg" class="img-responsive img-latestOnline" alt="自助分析平台" /></div>
+                                                                <p class="text-center">自助分析平台</p>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </li>
+
+                                            <li class="pull-right ul-latestOnline-last">
+                                                <a href="####"><span class="glyphicon glyphicon-circle-arrow-right fontSize28" aria-hidden="true"></span></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-3 change-clo-paddingRight">
+                                <div class="containerBox" id="latestApplicationBox">
+                                    <div class="blueHeader">
+                                        <h4>最近使用应用</h4>
+                                    </div>
+
+                                    <div class="blueContainer">
+                                        <ul class="list-unstyled">
+                                            <li><a href="####">自助分析平台</a></li>
+                                            <li><a href="####">客户标签库</a></li>
+                                            <li><a href="####">指标库</a></li>
+                                            <li><a href="####">产品标签库</a></li>
+                                            <li><a href="####">市场监控分析</a></li>
+                                        </ul>
+                                    </div>
+
+                                    <div class="blueBottom pull-right">
+                                        <a href="####">更多></a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-md-9">
+                                <div class="row">
+                                    <div class="col-md-6 change-clo-paddingLeft change-clo-paddingRight">
+                                        <div class="containerBox" id="relatedReportsBox">
+                                            <div class="blackHeader">
+                                                <div class="pull-left">
+                                                    <h4>相关报表</h4>
+                                                </div>
+
+                                                <div class="pull-right headerMoreBtn">
+                                                    <a href="####">更多></a>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div class="blackContainer">
+
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-md-6 change-clo-paddingLeft">
+                                        <div class="containerBox" id="relatedApplicationsBox">
+                                            <div class="blackHeader">
+                                                <div class="pull-left">
+                                                    <h4>相关应用</h4>
+                                                </div>
+
+                                                <div class="pull-left ">
+                                                    <ul class="list-inline ul-relatedApplicationsHeader">
+                                                        <li class="active">
+                                                            <a href="#zong1" class="fontSize16" data-toggle="tab">综合</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#zong2" class="fontSize16" data-toggle="tab">个人客户</a>
+                                                        </li>
+                                                        <li>
+                                                            <a href="#zong3" class="fontSize16" data-toggle="tab">家庭客户</a>
+                                                        </li>
+                                                    </ul>
+                                                </div>
+
+                                                <div class="pull-right headerMoreBtn">
+                                                    <a href="####">更多></a>
+                                                </div>
+
+                                                <div class="clearfix"></div>
+                                            </div>
+
+                                            <div class="blackContainer">
+                                                <div id="myTabContent" class="tab-content">
+                                                    <div class="tab-pane fade active in" id="zong1">
+                                                        <ul class="list-inline ul-relatedApplications">
+                                                            <li>
+                                                                <a href="####">
+                                                                    <div class="relatedApplicationsImgBox"><img src="../../dist/images/fd-index-applyIcon01.jpg" alt="综合应用1" /></div>
+                                                                    <p class="text-center">综合应用1</p>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="####">
+                                                                    <div class="relatedApplicationsImgBox"><img src="../../dist/images/fd-index-applyIcon02.jpg" alt="综合应用2" /></div>
+                                                                    <p class="text-center">综合应用2</p>
+                                                                </a>
+                                                            </li>
+                                                            <li>
+                                                                <a href="####">
+                                                                    <div class="relatedApplicationsImgBox"><img src="../../dist/images/fd-index-applyIcon03.jpg" alt="综合应用3" /></div>
+                                                                    <p class="text-center">综合应用3</p>
+                                                                </a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="zong2">
+                                                        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
+                                                    </div>
+
+                                                    <div class="tab-pane fade" id="zong3">
+                                                        <p>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid. Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+    <!-- 页面页脚 -->
+    <div class="myFooter">
+        <p class="text-center">为了获得最佳操作体验，建议您使用：1280*720及以上分辨率，谷歌、火狐或者IE11及以上版本浏览器</p>
+
+        <p class="text-center">联系方式：***********</p>
+
+        <p class="text-center">版权所有&copy;中国移动通信集团广东有限公司（湛江分公司）</p>
+    </div>
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../vendor/jquery/jquery-1.12.4.min.js"></script>
+    <!--<script>window.jQuery || document.write('<script src="../../vendor/jquery/jquery-1.12.4.min.js"><\/script>')</script>-->
+    <script src="../../vendor/bootstrap/js/bootstrap.min.js"></script>
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../vendor/ie10-viewport-bug-workaround.js"></script>
+
+    <!-- 入口文件 -->
+    <script src="./frontDesk.js"></script>
+
+</body>
+</html>

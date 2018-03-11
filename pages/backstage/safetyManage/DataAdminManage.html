@@ -1,0 +1,173 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- 数据权限管理页面正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">数据权限管理</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据权限管理列表
+                </div>
+
+                <div class="panel-body" id="DataAdminManageContainer">
+                    <table class="display table table-striped table-bordered" cellspacing="0" width="100%" id="dataAdminManageTable">
+                        <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Position</th>
+                            <th>Office</th>
+                            <th>Extn.</th>
+                            <th>Start date</th>
+                            <th>Salary</th>
+                            <th>权限操作</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade myMiddleModal" id="removeModal" tabindex="-1" role="dialog" aria-labelledby="myRemoveModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myRemoveModal">特别提示：</h4>
+                                </div>
+                                <div class="modal-body">
+                                    该服务正在执行中，确定进行删除操作吗？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定操作</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal fade myMiddleModal" id="otherModal" tabindex="-1" role="dialog" aria-labelledby="myOtherModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myOtherModal">特别提示：</h4>
+                                </div>
+                                <div class="modal-body">
+                                    该服务正在执行中，确定进行其他操作吗？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定操作</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var $DataAdminManageTable = $('#dataAdminManageTable');
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                "ajax": "../../server/tableData.json",
+                "table": "#dataAdminManageTable",
+                "fields": [ {
+                    "label": "First name:",
+                    "name": "first_name"
+                }, {
+                    "label": "Last name:",
+                    "name": "last_name"
+                }, {
+                    "label": "Position:",
+                    "name": "position"
+                }, {
+                    "label": "Office:",
+                    "name": "office"
+                }, {
+                    "label": "Extension:",
+                    "name": "extn"
+                }, {
+                    "label": "Start date:",
+                    "name": "start_date",
+                    "type": "datetime"
+                }, {
+                    "label": "Salary:",
+                    "name": "salary"
+                }
+                ]
+            } );
+
+            // Edit record
+            $DataAdminManageTable.on('click', 'a.editor_edit', function (e) {
+                e.preventDefault();
+
+                editor.edit( $(this).closest('tr'), {
+                    title: '编辑权限',
+                    buttons: '完成'
+                } );
+            } );
+
+            // Delete a record
+            $DataAdminManageTable.on('click', 'a.editor_remove', function (e) {
+                e.preventDefault();
+
+//                editor.remove( $(this).closest('tr'), {
+//                    title: '删除权限',
+//                    message: '该服务正在执行中，确定删除权限吗？',
+//                    buttons: '删除'
+//                } );
+
+            } );
+
+            // 其他操作
+            $DataAdminManageTable.on('click', 'a.editor_other', function (e) {
+                e.preventDefault();
+            } );
+
+            $DataAdminManageTable.DataTable( {
+                ordering: false,
+                ajax: "../../server/tableData.json",
+                columns: [
+                    { data: null, render: function ( data, type, row ) {
+                        return data.first_name+' '+data.last_name;
+                    } },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "extn" },
+                    { data: "start_date" },
+                    { data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) },
+                    {
+                        data: null,
+                        className: "center",
+                        defaultContent: '<a href="" class="editor_edit">编辑</a> / <a href="" class="editor_remove" data-toggle="modal" data-target="#removeModal">删除</a> / <a href="" class="editor_other" data-toggle="modal" data-target="#otherModal">其他操作</a>'
+                    }
+                ],
+                select: true
+            } );
+        });
+
+    })();
+</script>
+
+

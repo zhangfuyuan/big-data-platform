@@ -1,0 +1,188 @@
+{
+  "datas": {
+    "code": 200,
+    "message": "请求成功",
+    "data": [
+      {
+        "data": "09-01",
+        "safety": 21,
+        "warning": 5,
+        "danger": 0
+      },
+      {
+        "data": "09-02",
+        "safety": 18,
+        "warning": 4,
+        "danger": 1
+      },
+      {
+        "data": "09-03",
+        "safety": 23,
+        "warning": 2,
+        "danger": 0
+      },
+      {
+        "data": "09-04",
+        "safety": 28,
+        "warning": 8,
+        "danger": 2
+      },
+      {
+        "data": "09-05",
+        "safety": 19,
+        "warning": 3,
+        "danger": 0
+      },
+      {
+        "data": "09-06",
+        "safety": 22,
+        "warning": 2,
+        "danger": 0
+      },
+      {
+        "data": "09-07",
+        "safety": 33,
+        "warning": 3,
+        "danger": 1
+      },
+      {
+        "data": "09-08",
+        "safety": 17,
+        "warning": 1,
+        "danger": 0
+      },
+      {
+        "data": "09-09",
+        "safety": 20,
+        "warning": 3,
+        "danger": 1
+      },
+      {
+        "data": "09-10",
+        "safety": 19,
+        "warning": 3,
+        "danger": 0
+      },
+      {
+        "data": "09-11",
+        "safety": 21,
+        "warning": 5,
+        "danger": 0
+      },
+      {
+        "data": "09-12",
+        "safety": 18,
+        "warning": 4,
+        "danger": 1
+      },
+      {
+        "data": "09-13",
+        "safety": 33,
+        "warning": 5,
+        "danger": 0
+      },
+      {
+        "data": "09-14",
+        "safety": 28,
+        "warning": 3,
+        "danger": 0
+      },
+      {
+        "data": "09-15",
+        "safety": 19,
+        "warning": 3,
+        "danger": 0
+      },
+      {
+        "data": "09-16",
+        "safety": 27,
+        "warning": 4,
+        "danger": 0
+      },
+      {
+        "data": "09-17",
+        "safety": 18,
+        "warning": 1,
+        "danger": 1
+      },
+      {
+        "data": "09-18",
+        "safety": 23,
+        "warning": 2,
+        "danger": 0
+      },
+      {
+        "data": "09-19",
+        "safety": 28,
+        "warning": 8,
+        "danger": 2
+      },
+      {
+        "data": "09-20",
+        "safety": 19,
+        "warning": 3,
+        "danger": 0
+      },
+      {
+        "data": "09-21",
+        "safety": 21,
+        "warning": 5,
+        "danger": 0
+      },
+      {
+        "data": "09-22",
+        "safety": 28,
+        "warning": 4,
+        "danger": 0
+      },
+      {
+        "data": "09-23",
+        "safety": 33,
+        "warning": 2,
+        "danger": 0
+      },
+      {
+        "data": "09-24",
+        "safety": 18,
+        "warning": 5,
+        "danger": 0
+      },
+      {
+        "data": "09-25",
+        "safety": 29,
+        "warning": 11,
+        "danger": 1
+      },
+      {
+        "data": "09-26",
+        "safety": 27,
+        "warning": 7,
+        "danger": 0
+      },
+      {
+        "data": "09-27",
+        "safety": 22,
+        "warning": 5,
+        "danger": 1
+      },
+      {
+        "data": "09-28",
+        "safety": 19,
+        "warning": 2,
+        "danger": 0
+      },
+      {
+        "data": "09-29",
+        "safety": 28,
+        "warning": 7,
+        "danger": 1
+      },
+      {
+        "data": "09-30",
+        "safety": 32,
+        "warning": 10,
+        "danger": 2
+      }
+    ]
+  }
+}

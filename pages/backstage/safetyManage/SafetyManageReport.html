@@ -1,0 +1,101 @@
+<script src="../../vendor/echarts/theme/macarons.js"></script>
+
+<!-- 安全管理报告正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">安全管理报告</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 近一月操作的安全级别及安全指数曲线图
+                </div>
+
+                <div class="panel-body safetyManageReport-lineBody">
+                    <div id="safetyManageReport-lineChart" style="width:100%;max-width:1010px;height:400px"></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 昨日操作的安全级别状况图
+                </div>
+
+                <div class="panel-body safetyManageReport-pieBody">
+                    <div id="safetyManageReport-pieChart" style="width:100%;max-width:465px;height:400px"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        /* 近一月操作的安全级别及安全指数曲线图 */
+        var safetyManageReportLineChart = new MyEcharts({
+            DOMId: 'safetyManageReport-lineChart',
+            option: {
+                legendDataList: ['安全级别','警告级别','危险级别'],
+                series: [
+                    {
+                        name: '安全级别',
+                        type: 'line',
+                        dataKey: 'safety'
+                    },
+                    {
+                        name: '警告级别',
+                        type: 'line',
+                        dataKey: 'warning'
+                    },
+                    {
+                        name: '危险级别',
+                        type: 'line',
+                        dataKey: 'danger'
+                    }
+                ],
+                xAxisDataKey: 'data',
+                legendX: 'center',
+                legendOrient: 'horizontal',
+                yAxisName: '安全指数',
+                dataZoomShow: true,
+                colorList: ['#2EC7C9', '#FFB980', '#D87A80']
+            },
+            dataUrl: '../../server/safetyManageReportData_Month.json',
+            theme: 'macarons'
+        });
+
+        /* 昨日操作的安全级别状况图 */
+        var safetyManageReportPieChart = new MyEcharts({
+            DOMId: 'safetyManageReport-pieChart',
+            option: {
+                legendDataList: ['安全级别','警告级别','危险级别'],
+                series: [
+                    {
+                        name: '操作级别',
+                        type: 'pie',
+                        dataKey: 'val'
+                    }
+                ],
+                isPie: true,
+                pieAxisDataKey: 'level',
+                legendX: 'center',
+                legendOrient: 'horizontal',
+                colorList: ['#2EC7C9', '#FFB980', '#D87A80'],
+                tooltipFormatter: "{a} <br/>{b} : {c} ({d}%)",
+                calculable: true,
+                tooltipTrigger: 'item'
+            },
+            dataUrl: '../../server/safetyManageReportData_Day.json',
+            theme: 'macarons'
+        });
+
+    })();
+</script>
+

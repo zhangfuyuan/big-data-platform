@@ -1,0 +1,145 @@
+<link href="../../vendor/datatables/css/dataTables.bootstrap.css" rel="stylesheet">
+<link href="../../vendor/datatables/css/dataTables.responsive.css" rel="stylesheet">
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- 数据服务管理页面正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">数据服务管理</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据服务列表
+                </div>
+
+                <div class="panel-body">
+                    <table class="display table table-striped table-bordered" cellspacing="0" width="100%" id="dataServicesTable">
+                        <thead>
+                            <tr>
+                                <th>Name</th>
+                                <th>Position</th>
+                                <th>Office</th>
+                                <th>Extn.</th>
+                                <th>Start date</th>
+                                <th>Salary</th>
+                                <th>停止 / 重启服务</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade myMiddleModal" id="stopModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title" id="myModalLabel">特别提示：</h4>
+                                </div>
+                                <div class="modal-body">
+                                    该服务正在执行中，确定停止吗？
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭窗口</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">确定停止</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var $DataServicesTable = $('#dataServicesTable');
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                "ajax": "../../server/tableData.json",
+                "table": "#dataServicesTable",
+                "fields": [ {
+                    "label": "First name:",
+                    "name": "first_name"
+                }, {
+                    "label": "Last name:",
+                    "name": "last_name"
+                }, {
+                    "label": "Position:",
+                    "name": "position"
+                }, {
+                    "label": "Office:",
+                    "name": "office"
+                }, {
+                    "label": "Extension:",
+                    "name": "extn"
+                }, {
+                    "label": "Start date:",
+                    "name": "start_date",
+                    "type": "datetime"
+                }, {
+                    "label": "Salary:",
+                    "name": "salary"
+                }
+                ]
+            } );
+
+            // Edit record
+            $DataServicesTable.on('click', 'a.editor_edit', function (e) {
+                e.preventDefault();
+
+//                editor.edit( $(this).closest('tr'), {
+//                    title: 'Edit record',
+//                    buttons: 'Update'
+//                } );
+            } );
+
+            // Delete a record
+            $DataServicesTable.on('click', 'a.editor_remove', function (e) {
+                e.preventDefault();
+
+//                editor.remove( $(this).closest('tr'), {
+//                    title: 'Delete record',
+//                    message: 'Are you sure you wish to remove this record?',
+//                    buttons: 'Delete'
+//                } );
+            } );
+
+            $DataServicesTable.DataTable( {
+                ordering: false,
+                ajax: "../../server/tableData.json",
+                columns: [
+                    { data: null, render: function ( data, type, row ) {
+                        return data.first_name+' '+data.last_name;
+                    } },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "extn" },
+                    { data: "start_date" },
+                    { data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) },
+                    {
+                        data: null,
+                        className: "center",
+                        defaultContent: '<a href="" class="editor_edit" data-toggle="modal" data-target="#stopModal">停止</a> / <a href="" class="editor_remove">重启</a>'
+                    }
+                ]
+            } );
+        });
+
+    })();
+</script>
+

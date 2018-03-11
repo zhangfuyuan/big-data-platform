@@ -1,0 +1,170 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+<script src="../../vendor/echarts/theme/macarons.js"></script>
+
+<!-- 数据接入页面正文 -->
+<div id="page-wrapper">
+        <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">数据接入</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据接入监测与管理
+                </div>
+
+                <div class="panel-body" id="dataAccessBox">
+                    <!-- Nav tabs -->
+                    <ul class="nav nav-tabs">
+                        <li class="active">
+                            <a href="#dataAccessSituation-lineBody" data-toggle="tab">数据接入状态显示</a>
+                        </li>
+
+                        <li>
+                            <a href="#dataAccessSettings" data-toggle="tab">数据接入管理列表</a>
+                        </li>
+                    </ul>
+
+                    <!-- Tab panes -->
+                    <div class="tab-content">
+                        <div class="tab-pane fade in active" id="dataAccessSituation-lineBody">
+                            <div id="dataAccessSituation-lineChart" style="width:100%;max-width:1560px;height:400px"></div>
+
+                            <p id="dataAccessClassify-btnBox">
+                                <span>接入中的数据选择：</span>
+                                <button type="button" class="btn btn-info">总数</button>
+                                <button type="button" class="btn btn-default">A</button>
+                                <button type="button" class="btn btn-default">B</button>
+                                <button type="button" class="btn btn-default">C</button>
+                                <button type="button" class="btn btn-default">D</button>
+                                <button type="button" class="btn btn-default">E</button>
+                                <button type="button" class="btn btn-default">F</button>
+                                <button type="button" class="btn btn-default">G</button>
+                                <button type="button" class="btn btn-default">H</button>
+                                <button type="button" class="btn btn-default">I</button>
+                            </p>
+                        </div>
+
+                        <div class="tab-pane fade" id="dataAccessSettings">
+                            <table id="dataAccessManageListTable" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                                <thead>
+                                <tr>
+                                    <th>接入表名</th>
+                                    <th>分区方案</th>
+                                    <th>接入字段</th>
+                                    <th>字段间隔符号</th>
+                                    <th>Start date</th>
+                                    <th>存储类型</th>
+                                </tr>
+                                </thead>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        /* 数据接入情况小时变化曲线 */
+        var dataAccessSituationChart = initDASChart();
+
+        /* 数据接入页面数据接入情况小时变化曲线-底部控制按钮切换效果 */
+        $('#dataAccessClassify-btnBox').on('click', '.btn', function () {
+            var txt = $(this).text();
+            $(this).addClass('btn-info').siblings().removeClass('btn-info').addClass('btn-default');
+
+            dataAccessSituationChart._disposeChart();
+            dataAccessSituationChart = initDASChart(txt, changeDASChartDate(txt));
+        });
+
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                ajax: "../../server/tableData.json",
+                table: "#dataAccessManageListTable",
+                fields: [ {
+                    "label": "接入表名1:",
+                    "name": "first_name"
+                }, {
+                    "label": "接入表名2:",
+                    "name": "last_name"
+                }, {
+                    "label": "分区方案:",
+                    "name": "position"
+                }, {
+                    "label": "接入字段:",
+                    "name": "office"
+                }, {
+                    "label": "字段间隔符号:",
+                    "name": "extn"
+                }, {
+                    "label": "Start date:",
+                    "name": "start_date",
+                    "type": "datetime"
+                }, {
+                    "label": "存储类型:",
+                    "name": "salary"
+                }, {
+                    "label": "Permissions:",
+                    "name": "permission[].id",
+                    "type": "radio"
+                }
+                ]
+            } );
+
+            /* 数据接入管理列表 表格 */
+            var dataAccessManageListTable = $('#dataAccessManageListTable').DataTable( {
+                ordering: false,
+                dom: "Bfrtip",
+                ajax: {
+                    url: "../../server/tableData.json",
+                    type: 'GET'
+                },
+                columns: [
+                    { data: null, render: function ( data, type, row ) {
+                        return data.first_name+' '+data.last_name;
+                    } },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "extn" },
+                    { data: "start_date" },
+                    { data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) }
+                ],
+                select: true,
+                buttons: [
+                    {
+                        extend: "create",
+                        text: '新增',
+                        editor: editor,
+                        formButtons: ['完成']
+                    },
+                    {
+                        extend: "edit",
+                        text: '编辑',
+                        editor: editor,
+                        formButtons: ['完成']
+                    }
+                ]
+            } );
+        } );
+
+    })();
+</script>
+

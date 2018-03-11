@@ -1,0 +1,44 @@
+/*
+===================================================
+    公共类样式改写
+===================================================
+*/
+body {
+    color: #666;
+}
+
+.fontSize28 {
+    font-size: 28px;
+}
+
+.fontSize24 {
+    font-size: 24px;
+}
+
+.fontSize20 {
+    font-size: 20px;
+}
+
+.fontSize18 {
+    font-size: 18px;
+}
+
+.fontSize16 {
+    font-size: 16px;
+}
+
+.fontSize12 {
+    font-size: 12px;
+}
+
+.fontSize10 {
+    font-size: 10px;
+}
+
+.navbar-static-top {
+    z-index: 10;
+}
+
+.colorRed {
+    color: #d9534f;
+}

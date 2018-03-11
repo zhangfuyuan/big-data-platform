@@ -1,0 +1,28 @@
+{
+  "datas": {
+    "code": 200,
+    "message": "请求成功",
+    "data": [
+      {
+        "category": "目录1",
+        "val": 335
+      },
+      {
+        "category": "目录2",
+        "val": 310
+      },
+      {
+        "category": "目录3",
+        "val": 234
+      },
+      {
+        "category": "目录4",
+        "val": 135
+      },
+      {
+        "category": "目录5",
+        "val": 1548
+      }
+    ]
+  }
+}

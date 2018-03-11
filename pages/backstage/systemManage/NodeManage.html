@@ -1,0 +1,173 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- 节点管理页面 -->
+<div id="page-wrapper" class="NodeManage-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">节点管理
+                <small class="pull-right" id="nodeManageHeader-btn">
+                    <button type="button" class="btn btn-primary fontSize18">节点添加</button>
+                    <button type="button" class="btn btn-primary fontSize18">节点修改</button>
+                    <button type="button" class="btn btn-primary fontSize18">节点删除</button>
+                </small>
+            </h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-search-plus fa-fw"></i> 节点查询
+                </div>
+
+                <div class="panel-body nodeQuery">
+                    <div class="well well-sm">
+                        <table>
+                            <tr class="text-center">
+                                <td class="fontSize16">节点姓名：</td>
+                                <td>
+                                    <input type="text" class="form-control" id="nodeNamedInput" value="" placeholder="请输入需要查询的节点姓名" />
+                                </td>
+                                <td class="fontSize16">父节点：</td>
+                                <td>
+                                    <input type="text" class="form-control" id="fatherNodeInput" value="" placeholder="请输入需要查询的父节点" />
+                                </td>
+                                <td>
+                                    <button type="button" class="btn btn-default fontSize16" id="nodeQueryBtn">查询</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 节点列表
+                </div>
+
+                <div class="panel-body" id="nodeListBody">
+                    <table class="display table table-striped table-bordered" cellspacing="0" width="100%" id="nodeListTable">
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th>节点ID</th>
+                            <th>节点名称</th>
+                            <th>父节点</th>
+                            <th>层级</th>
+                            <th>类型</th>
+                            <th>状态</th>
+                            <th>排序</th>
+                            <th>简介</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                "ajax": "../../server/tableData.json",
+                "table": "#nodeListTable",
+                "fields": [ {
+                    "label": "First name:",
+                    "name": "first_name"
+                }, {
+                    "label": "Last name:",
+                    "name": "last_name"
+                }, {
+                    "label": "Position:",
+                    "name": "position"
+                }, {
+                    "label": "Office:",
+                    "name": "office"
+                }, {
+                    "label": "Extension:",
+                    "name": "extn"
+                }, {
+                    "label": "Start date:",
+                    "name": "start_date",
+                    "type": "datetime"
+                }, {
+                    "label": "Salary:",
+                    "name": "salary"
+                }
+                ]
+            } );
+
+            $('#nodeManageHeader-btn').on('click', '.btn', function (e) {
+                e.preventDefault();
+
+                editor.create( {
+                    title: '进行节点管理的操作',
+                    buttons: '完成'
+                } );
+            } );
+
+            var nodeListTable = $('#nodeListTable').DataTable( {
+                ordering: false,
+                ajax: "../../server/tableData.json",
+                columns: [
+                    {
+                        data: null,
+                        defaultContent: '',
+                        className: 'select-checkbox',
+                        orderable: false
+                    },
+                    { data: "extn" },
+                    { data: null, render: function ( data, type, row ) {
+                        return data.first_name+' '+data.last_name;
+                    } },
+                    { data: null, defaultContent: '' },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "start_date" },
+                    { data: "salary", render: $.fn.dataTable.render.number( ',', '.', 0, '$' ) },
+                    { data: null, defaultContent: '' }
+                ]
+            } );
+
+            /* 隐藏搜索框 */
+            $('.dataTables_filter').css('display', 'none');
+
+            /* 可多行选择 */
+            $('#nodeListTable tbody').on( 'click', 'tr', function () {
+                $(this).toggleClass('selected');
+            } );
+
+            /* 查询名字 */
+            $('#nodeQueryBtn').on( 'click', function () {
+                var $input = $('#nodeNamedInput');
+                if($input.val()){
+                    nodeListTable.search( $input.val() ).draw();
+                } else {
+                    alert('输入不能为空！');
+                }
+            } );
+        });
+
+    })();
+</script>

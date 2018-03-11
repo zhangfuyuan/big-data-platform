@@ -1,0 +1,226 @@
+<link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- 日志管理页面正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">日志管理</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 日志管理选择
+                </div>
+
+                <div class="panel-body">
+                    <p class="row" id="logClassificationSelection">
+                        <button type="button" class="btn btn-primary fontSize16 logBtn" id="showDataAccessLogBtn">数据接入日志</button>
+                        <button type="button" class="btn btn-success col-lg-offset-1 fontSize16 logBtn" id="showDataServicesLogBtn">数据服务日志</button>
+                        <button type="button" class="btn btn-warning col-lg-offset-1 fontSize16 logBtn" id="showSystemOperationLogBtn">系统操作日志</button>
+                        <button type="button" class="btn btn-danger col-lg-offset-1 fontSize16 logBtn" id="showSystemErrorLogBtn">系统异常日志</button>
+                    </p>
+
+                    <div class="form-group" id="logDateSelection">
+                        <table>
+                            <tr class="text-center">
+                                <td>日志时间范围：</td>
+
+                                <td colspan="2">
+                                    <div class="input-group" id="LMDateSelBox">
+                                        <input type="text" class="form-control LMDateInput fontSize16" value="" id="LMSearchStartDate">
+                                        <span class="input-group-addon">到</span>
+                                        <input type="text" class="form-control LMDateInput fontSize16" value="" id="LMSearchEndDate">
+                                    </div>
+                                </td>
+
+                                <td>
+                                    <button type="button" class="btn btn-default" id="searchDateBtn"> <i class="fa fa-search fa-fw"></i> 搜索</button>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row logBox" id="logManageBox">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i>
+                    <span id="logManageBoxTitle">数据接入日志</span>
+                </div>
+
+                <div class="panel-body">
+                    <table id="logManageTable" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <th>信息1</th>
+                                <th>信息2</th>
+                                <th>信息3</th>
+                                <th>信息4</th>
+                                <th>Start date</th>
+                                <th>更多详情</th>
+                            </tr>
+                        </thead>
+                    </table>
+
+                    <!-- Modal -->
+                    <div class="modal fade myMiddleModal" id="logManageDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"><span id="logManageDetailModalTitle">对应数据接入</span>日志详情信息</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped" id="logManageDetailModalTable">
+                                            <tbody>
+                                            <tr>
+                                                <th rowspan="2" class="fontSize18"><span id="logManageDetailModalTableTh">对应数据接入</span>日志</th>
+                                                <th>详情1</th>
+                                                <th>详情2</th>
+                                                <th>详情3</th>
+                                            </tr>
+                                            <tr>
+                                                <td>540</td>
+                                                <td>32</td>
+                                                <td>22</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭窗口</button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- /.modal-dialog -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        /* 设置搜索条件 */
+        var nowDateIndex = 4;
+        $.fn.dataTable.ext.search.push(function ( settings, data, dataIndex ) {
+            var startDate = $('#LMSearchStartDate').val();
+            var endDate = $('#LMSearchEndDate').val();
+            var startDateNum = new Date(startDate.replace(/\-/g, "\/"));
+            var endDateNum = new Date(endDate.replace(/\-/g, "\/"));
+            var date = new Date(data[nowDateIndex].replace(/\-/g, "\/")) || '2018/01/01';
+
+            if ( ( isNaN( startDateNum ) && isNaN( endDateNum ) ) ||
+                ( isNaN( startDateNum ) && date <= endDateNum ) ||
+                ( startDateNum <= date   && isNaN( endDateNum ) ) ||
+                ( startDateNum <= date   && date <= endDateNum ) )
+            {
+                return true;
+            }
+            return false;
+        });
+
+        /* 设置表格常规选项 */
+        $.extend( $.fn.dataTable.defaults, {
+            select: true,
+            bStateSave : true,
+            bLengthChange: false,
+            iDisplayLength: 10
+        } );
+
+        $(document).ready(function() {
+            var logManageTable = new MyTables({
+                $DOM: $('#logManageTable')
+            });
+
+            /* 实现搜索时间功能 */
+            $('#searchDateBtn').on( 'click', function () {
+                var beginDate=$("#LMSearchStartDate").val();
+                var endDate=$("#LMSearchEndDate").val();
+                var d1 = new Date(beginDate.replace(/\-/g, "\/"));
+                var d2 = new Date(endDate.replace(/\-/g, "\/"));
+
+                if(beginDate!="" && endDate!="" && d1>=d2)
+                {
+                    alert("开始时间不能大于结束时间！");
+                }else if(beginDate==""){
+                    alert("开始时间不能为空！");
+                }else {
+                    logManageTable._draw();
+                }
+            } );
+
+            /* 初始化详情信息 */
+            logManageTable._addEvent( 'select', function ( e, dt, type, indexes ) {
+                if ( type === 'row' ) {
+                    var data = logManageTable._myTable.rows( indexes ).data()[0];
+                    $('#logManageDetailModalTitle').text(data.first_name + ' ' + data.last_name);
+                    $('#logManageDetailModalTableTh').text(data.first_name + ' ' + data.last_name);
+                }
+            } );
+
+            /* 根据点击按钮显示对应表格 */
+            $('#logClassificationSelection').on('click', '.logBtn', function () {
+                var title = $(this).text();
+
+                // 最先重置表色、表题
+                $('#logManageBox').find('.panel').removeClass('panel-primary panel-green panel-yellow panel-red')
+                    .addClass(logManageTable._getCurOption(title).panelClass);
+                $('#logManageBoxTitle').text(title);
+
+                nowDateIndex = logManageTable._getCurOption(title).nowDateIndex;
+
+                // 销毁、清空上次表内容
+                logManageTable._destroy();
+                logManageTable._$DOM.empty();
+
+                // 重置表头、内容的选项
+                logManageTable._initTable(title);
+
+                $('.dataTables_filter').css('display','none');      //重置隐藏搜索框
+            });
+
+            /* 隐藏搜索框 */
+            $('.dataTables_filter').css('display','none');
+
+            /* 设置日期表格 */
+            $('.datetimepicker').remove();
+            $('#logDateSelection').find('.LMDateInput').datetimepicker({
+                format: 'yyyy-mm-dd',
+                language:  'zh-CN',  //日期
+                weekStart: 1,
+                todayBtn:  1,
+                autoclose: 1,
+                todayHighlight: 1,
+                startView: 2,
+                minView: 2,
+                forceParse: 0
+            });
+        } );
+
+    })();
+</script>
+

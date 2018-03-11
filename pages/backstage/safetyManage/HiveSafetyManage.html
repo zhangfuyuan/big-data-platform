@@ -1,0 +1,147 @@
+<link href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" rel="stylesheet" media="screen" />
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js" charset="UTF-8"></script>
+
+<!-- Hive安全管理页面正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Hive安全管理</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Hive安全管理设置
+                </div>
+
+                <div class="panel-body" id="HiveSafetyManageBox">
+                    <form role="form" id="HiveSafetyManageForm">
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading fontSize20">
+                                        基本设置1
+                                    </div>
+
+                                    <div class="panel-body col-lg-6 col-lg-offset-1">
+                                        <div class="form-group">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">文本设置1</span>
+                                                <input type="text" class="form-control" id="hiveInput1" placeholder="文本设置1" />
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="form-group input-group">
+                                                <span class="input-group-addon">文本设置2</span>
+                                                <input type="text" class="form-control" id="hiveInput2" placeholder="文本设置2" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading fontSize20">
+                                        基本设置2
+                                    </div>
+
+                                    <div class="panel-body col-lg-6 col-lg-offset-1">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">时间选择</span>
+                                            <input class="form-control fontSize16" id="HSMDateInput" type="text" value="" />
+                                            <span class="input-group-addon"><span class="glyphicon glyphicon-calendar"></span></span>
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">菜单选择</span>
+                                            <select class="form-control" name="hiveInput4" id="hiveInput4">
+                                                <option selected disabled>--请选择--</option>
+                                                <option value="option1">选项1</option>
+                                                <option value="option2">选项2</option>
+                                                <option value="option3">选项3</option>
+                                                <option value="option4">选项4</option>
+                                            </select>
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <label class="input-group-addon">单选圆框</label>
+                                            <div class="form-control">
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optionsRadiosInline" id="hiveInput5" value="option1" checked="" />是
+                                                </label>
+                                                <label class="radio-inline">
+                                                    <input type="radio" name="optionsRadiosInline" id="hiveInput6" value="option2" />否
+                                                </label>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group input-group">
+                                            <label class="input-group-addon">复选方框</label>
+                                            <div class="form-control">
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" />1
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" />2
+                                                </label>
+                                                <label class="checkbox-inline">
+                                                    <input type="checkbox" />3
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-10 col-lg-offset-1">
+                                <div class="panel panel-info">
+                                    <div class="panel-heading fontSize20">
+                                        基本设置3
+                                    </div>
+
+                                    <div class="panel-body col-lg-6 col-lg-offset-1">
+                                        <div class="form-group input-group">
+                                            <span class="input-group-addon">多行文本</span>
+                                            <textarea class="form-control" name="" id="hiveInput7" rows="5"></textarea>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="text-right col-lg-11">
+                            <button type="reset" class="btn btn-default">重置</button>
+                            <button type="submit" class="btn btn-primary" data-href="safetyManage/HiveSafetyManage.html" data-state="success">确定提交</button>
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.datetimepicker').remove();
+        $("#HSMDateInput").datetimepicker({
+            format: 'yyyy-mm-dd',
+            language:  "zh-CN",
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 2,
+            forceParse: 0
+        });
+    });
+</script>

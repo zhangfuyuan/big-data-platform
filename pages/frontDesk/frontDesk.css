@@ -1,0 +1,432 @@
+
+/*
+===================================================
+    f-前台公共模块
+===================================================
+*/
+body#frontDesk {
+    background-color: #e8e8e8;
+}
+
+#frontDesk .clearFirstLiLeft {
+    padding-left: 0;
+    margin-left: 0;
+}
+
+#frontDesk .clearLastLiRight {
+    padding-right: 0;
+    margin-right: 0;
+}
+
+/***************** 顶部导航栏 *****************/
+#frontDesk div.navbar {
+    margin-bottom: 0;
+    border: 0;
+}
+
+#frontDesk .container {
+    width: 95%;
+}
+
+/* 顶部信息 */
+.myTopbarBox {
+    background-color: #F6F6F6;
+}
+
+#frontDesk .myTopbarBox, #frontDesk .myTopbarBox a {
+    color: #999
+}
+
+.myTopbarBox ul {
+    margin: 5px 0;
+}
+
+.myTopbarBox ul li {
+    margin: 0 1.4%;
+}
+
+.myTopbarBox ul li.myTopbarBox-firstLi {
+    margin-left: 0;
+}
+
+/* logo和导航 */
+.myNavBox {
+    background-color: #fff;
+}
+
+.myNavBox .ul-logo, .myNavBox #myTab {
+    padding: 16px 0;
+    margin-bottom: 0;
+}
+
+.myNavBox ul.ul-logo {
+    padding: 5px 0 \9;
+}
+
+.ul-logo li {
+    margin: 0 2%;
+}
+
+.ul-logo {
+    width: 100%;
+    list-style: none;
+    padding-left: 0;
+}
+
+.ul-logo .ul-logo-last h2 {
+    border-left: 1px solid #e6e6e6;
+    padding-left: 10px;
+    padding-left: 20px \9;
+    color: #349DD7;
+    font-size: 24px;
+    font-size: 30px \9;
+    margin: 10px 0;
+    margin: 19px 0  \9;
+}
+
+.ul-logo .img-logo {
+    width: auto;
+    height: 50px;
+    height: 70px \9;
+}
+
+.myNavBox .nav-tabs {
+    border-bottom: 0;
+}
+
+.myNavBox ul#myTab {
+    width: 100%;
+    padding-left: 9.5%;
+}
+
+#myTab li {
+    margin: 0 .8%;
+    margin: 0 3.5% \9;
+}
+
+#myTab li a {
+    font-size: 20px \9;
+}
+
+
+/* 搜索栏 */
+.mySearchBox {
+    background-color: #f5f5f5;
+    padding: 10px 0;
+}
+
+.mySearchBox #searchBody {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#searchBody>ul {
+    width: 100%;
+}
+
+#allSearchBox {
+    width: 12%;
+}
+
+#allSearchBox>a {
+    height: 50px;
+    padding: 13px 5px;
+    margin-top: 8px;
+    border: 1px solid #2e6da4;
+    border-right: 0;
+}
+
+#searchBtnBox {
+    width: 75%;
+}
+
+#searchBtnBox>form {
+    width: 100%;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+#searchBtnBox>form>div {
+    height: 50px;
+    width: 100%;
+    border: 1px solid #2e6da4;
+    border-left: 0;
+}
+
+#searchBtnBox>form>div>input {
+    height: 46px;
+    line-height: 35px;
+    font-size: 16px;
+    width: 80%;
+    border: 0;
+    border-radius: 0;
+}
+
+#searchBtnBox>form>div>.btn {
+    height: 48px;
+    width: 20%;
+    border-radius: 0;
+}
+
+#advancedSearchBox {
+    padding-left: 10px;
+    margin-top: 10px;
+}
+
+#advancedSearchBox>a {
+    padding: 15px 0;
+}
+
+.ul-hotSearch li {
+    padding-top: 25px;
+}
+
+/***************** 页面正文 *****************/
+
+
+.myContainerBox {
+    background-color: #e8e8e8;
+}
+
+/* 当前位置 */
+#indexList {
+    background-color: transparent;
+    margin-bottom: 0;
+}
+
+/***************** 页面页脚 *****************/
+.myFooter {
+    background-color: #e8e8e8;
+    padding-top: 30px;
+}
+
+/*
+===================================================
+    f1-前台首页正文样式
+===================================================
+*/
+/* 首页正文内容模块样式 */
+#fontDeskIndexContent .change-clo-paddingLeft {
+    padding-left: 5px;
+}
+
+#fontDeskIndexContent .change-clo-paddingRight {
+    padding-right: 5px;
+}
+
+#fontDeskIndexContent .containerBox {
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+}
+#fontDeskIndexContent .containerBox h4 {
+    margin-top: 0;
+    margin-bottom: 0;
+    padding: 10px;
+}
+
+#fontDeskIndexContent .img-big {
+    width: 100%;
+    height: 510px;
+}
+
+.blueHeader {
+    border-bottom: 1px solid #337AB7;
+    color: #337AB7;
+}
+
+.blackHeader {
+    border-bottom: 1px solid #e8e8e8;
+}
+
+#indexBigImgBox {
+    height: 510px;
+}
+
+/* 收藏报表、收藏应用、最近访问报表、最近使用应用、最新上线、相关报表和相关应用 */
+#collectReportBox, #collectAppliedBox, #latestAccessReportBox, #latestApplicationBox, #latestOnlineBox, #relatedReportsBox, #relatedApplicationsBox {
+    height: 250px;
+    overflow: hidden;
+}
+
+#latestAccessReportBox .blueContainer ul, #latestApplicationBox .blueContainer ul {
+    padding: 10px;
+}
+
+#latestAccessReportBox .blueContainer ul li, #latestApplicationBox .blueContainer ul li {
+    padding-bottom: 5px;
+}
+
+#latestAccessReportBox .blueContainer ul li a, #latestApplicationBox .blueContainer ul li a {
+    color: #666;
+}
+
+#latestApplicationBox {
+    position: relative;
+}
+
+#latestApplicationBox .blueBottom {
+    position: absolute;
+    bottom: 20px;
+    right: 20px;
+}
+
+#latestOnlineBox ul, #latestOnlineBox ul li {
+    margin: 0;
+    padding: 0;
+}
+#latestOnlineBox .ul-latestOnline {
+    width: 100%;
+    height: 210px;
+    overflow: hidden;
+    position: relative;
+}
+
+#latestOnlineBox .ul-latestOnline>li.li-latestOnline {
+    width: 100%;
+    height: 100%;
+    padding: 0 40px;
+}
+
+#latestOnlineBox .ul-latestOnline>.ul-latestOnline-first, #latestOnlineBox .ul-latestOnline>.ul-latestOnline-last {
+    position: absolute;
+    top: 50%;
+    margin-top: -14px;
+}
+
+#latestOnlineBox .ul-latestOnline>.ul-latestOnline-first {
+    left: 7px;
+}
+
+.ul-latestOnline>.ul-latestOnline-last {
+    right: 7px;
+}
+
+div.hideUl {
+    width: 100%;
+    overflow: hidden;
+}
+
+#latestOnlineBox .ul-latestOnlineContainer {
+    width: 9999px;
+    padding: 50px 0 0;
+}
+
+#latestOnlineBox .ul-latestOnlineContainer li {
+    padding: 0 10px;
+}
+
+.latestOnlineImgBox {
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+.blackHeader h4 {
+    font-weight: bold;
+}
+
+.blackHeader .headerMoreBtn {
+    padding: 10px 20px;
+}
+
+.ul-relatedApplicationsHeader {
+    /*margin-top: 10px;*/
+    /*margin-bottom: 0;*/
+    margin: 10px 0 0 20px;
+}
+
+.ul-relatedApplicationsHeader li {
+    height: 30px;
+    padding: 0 12px;
+}
+
+.ul-relatedApplicationsHeader li a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    text-decoration: none;
+}
+
+.ul-relatedApplicationsHeader li a:hover {
+    text-decoration: none;
+}
+
+.ul-relatedApplicationsHeader li:hover, .ul-relatedApplicationsHeader li.active {
+    border-bottom: 1px solid #337AB7;
+}
+
+#zong1 .ul-relatedApplications, #zong2, #zong3 {
+    padding: 20px;
+}
+
+#zong1 .ul-relatedApplications li {
+    padding: 0 20px;
+}
+
+.relatedApplicationsImgBox {
+    width: 80px;
+    margin-bottom: 10px;
+}
+
+
+/*
+===================================================
+    f2-智能报表正文样式
+===================================================
+*/
+
+
+/*
+===================================================
+    f3-自助分析正文样式
+===================================================
+*/
+
+
+/*
+===================================================
+    f5-应用中心正文样式
+===================================================
+*/
+
+
+/*
+===================================================
+    f5-前台首页正文样式
+===================================================
+*/
+
+
+
+/***************************************************** 兼容ie10+ *****************************************************/
+@media screen and(-ms-high-contrast:active),(-ms-high-contrast:none) {
+
+    /*
+    ===================================================
+        f1-前台首页
+    ===================================================
+    */
+    .ul-logo .ul-logo-last h2 {
+        padding-left: 20px;
+        font-size: 30px;
+        margin: 19px 0;
+    }
+
+    .myNavBox ul.ul-logo {
+        padding: 5px 0;
+    }
+
+    .ul-logo .img-logo {
+        width: 100%;
+        height: 70px;
+    }
+
+    #myTab li {
+        margin: 0 3.5%;
+    }
+
+    #myTab li a {
+        font-size: 20px;
+    }
+
+}

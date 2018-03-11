@@ -1,0 +1,195 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/buttons.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/select.dataTables.min.css" />
+<link rel="stylesheet" type="text/css" href="../../vendor/datatables/css/editor.dataTables.min.css" />
+
+<script src="../../vendor/datatables/js/jquery.dataTables.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.buttons.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.select.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables.editor.min.js"></script>
+<script src="../../vendor/datatables/js/dataTables_CN.js"></script>
+
+<!-- Hive数据管理页面正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Hive数据管理</h1>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-primary">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> Hive数据管理列表
+                </div>
+
+                <div class="panel-body" id="HiveDataManageBox">
+                    <table id="HiveDataList" class="display table table-striped table-bordered" cellspacing="0" width="100%">
+                        <thead>
+                        <tr>
+                            <th>Hive表名</th>
+                            <th>存储类型</th>
+                            <th>存储路径</th>
+                            <th>存储容量</th>
+                            <th>Start date</th>
+                            <th>更多详情</th>
+                        </tr>
+                        </thead>
+                    </table>
+
+                    <!-- 新建Hive表弹出框模块 -->
+                    <div id="newHiveForm" style="display: none">
+                        <fieldset class="name">
+                            <legend class="fontSize18">设置表名</legend>
+                            <editor-field name="first_name"></editor-field>
+                            <editor-field name="last_name"></editor-field>
+                        </fieldset>
+                        <fieldset class="office">
+                            <legend class="fontSize18">详细信息</legend>
+                            <editor-field name="office"></editor-field>
+                            <editor-field name="extn"></editor-field>
+                        </fieldset>
+                        <fieldset class="hr">
+                            <legend class="fontSize18">其他信息</legend>
+                            <editor-field name="position"></editor-field>
+                            <editor-field name="start_date"></editor-field>
+                        </fieldset>
+                    </div>
+
+                    <!-- Modal -->
+                    <div class="modal fade myMiddleModal" id="detailModal" tabindex="-1" role="dialog" aria-labelledby="HiveDetailModal" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                    <h4 class="modal-title"><span id="HiveDetailModalTitle">Hive对应表名</span>表详情信息</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover table-striped" id="HiveDetailModalTable">
+                                            <tbody>
+                                            <tr>
+                                                <th rowspan="2" class="fontSize18"><span id="HiveDetailModalTableTh">Hive对应表名</span>表</th>
+                                                <th>字段名</th>
+                                                <th>字段数据类型</th>
+                                                <th>等等信息</th>
+                                            </tr>
+                                            <tr>
+                                                <td>540</td>
+                                                <td>32</td>
+                                                <td>22</td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal">关闭窗口</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- /.modal -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        var editor;
+
+        $(document).ready(function() {
+            editor = new $.fn.dataTable.Editor( {
+                ajax: "../../server/tableData.json",
+                table: "#HiveDataList",
+//                template: '#newHiveForm',
+                fields: [ {
+                    "label": "中文表名:",
+                    "name": "first_name"
+                }, {
+                    "label": "英文表名:",
+                    "name": "last_name",
+                    "fieldInfo": "（hive实际存储的表名）"
+                }, {
+                    "label": "用户模式:",
+                    "name": "position",
+                    "fieldInfo": "（默认为：数据源设置中的用户模式，可自定义）"
+                }, {
+                    "label": "列名称:",
+                    "name": "office",
+                    "type": "textarea",
+                    "fieldInfo": "（列名称之间用“,”逗号隔开，默认将列加入到同组定义的列族中）"
+                }, {
+                    "label": "数据描述:",
+                    "name": "extn",
+                    "type": "textarea"
+                }, {
+                    "label": "Start date:",
+                    "name": "start_date",
+                    "type": "datetime"
+                }
+                ]
+            } );
+
+            var hiveDataTable = $('#HiveDataList').DataTable( {
+                ordering: false,
+                dom: "Bfrtip",
+                ajax: {
+                    url: "../../server/tableData.json",
+                    type: 'GET'
+                },
+                columns: [
+                    { data: null, render: function ( data, type, row ) {
+                        return data.first_name+' '+data.last_name;
+                    } },
+                    { data: "position" },
+                    { data: "office" },
+                    { data: "extn" },
+                    { data: "start_date" },
+                    {
+                        data: null,
+                        className: "center",
+                        defaultContent: '<a href="" class="editor_edit" data-toggle="modal" data-target="#detailModal">详情</a>'
+                    }
+                ],
+                select: true,
+                buttons: [
+                    {
+                        extend: "create",
+                        text: '新增',
+                        editor: editor,
+                        formButtons: [ '完成' ],
+                        className: 'HiveDataList-createBtn'
+                    }
+                ]
+            } );
+
+            hiveDataTable.on( 'select', function ( e, dt, type, indexes ) {
+                if ( type === 'row' ) {
+                    var data = hiveDataTable.rows( indexes ).data()[0];
+                    $('#HiveDetailModalTitle').text(data.first_name + ' ' + data.last_name);
+                    $('#HiveDetailModalTableTh').text(data.first_name + ' ' + data.last_name);
+                }
+            } );
+
+            var flag = true;
+            $('#HiveDataManageBox').on('click', '.HiveDataList-createBtn', function () {
+                $('.DTE_Header_Content').text('新建Hive表');
+
+                if(flag){
+                    for(var i=0; i<4; i++){
+                        $('#mybody').find('.DTE_Field').eq(i).append($('<p class="DTE_Field_Need colorRed">*</p>'));
+                    }
+                    flag = false;
+                }
+            });
+        } );
+
+    })();
+</script>
+
+

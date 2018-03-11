@@ -1,0 +1,325 @@
+<link rel="stylesheet" type="text/css" href="../../vendor/bootstrap-datetimepicker/css/bootstrap-datetimepicker.min.css" />
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.min.js"></script>
+<script src="../../vendor/bootstrap-datetimepicker/js/bootstrap-datetimepicker.zh-CN.js"></script>
+<script src="../../vendor/echarts/theme/macarons.js"></script>
+
+<!-- 后台首页正文 -->
+<div id="page-wrapper">
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">平台管理</h1>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-3 col-lg-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-4x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="BSIndex-shortcutTitle">数据服务</div>
+                            <div>将数据通过多种渠道或机制提供服务</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#dataServices/DataServicesIndex.html">
+                    <div class="panel-footer">
+                        <span class="pull-left">进入数据服务首页</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-lg-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-gears fa-4x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="BSIndex-shortcutTitle">数据管理</div>
+                            <div>将数据进行有效的收集、存储和应用</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#dataManage/DataManageIndex.html">
+                    <div class="panel-footer">
+                        <span class="pull-left">进入数据管理首页</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-lg-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shield fa-4x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="BSIndex-shortcutTitle">安全管理</div>
+                            <div>以安全为目标实现对数据的管理</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#safetyManage/DataAdminManage.html">
+                    <div class="panel-footer">
+                        <span class="pull-left">进入安全管理首页</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-lg-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="glyphicon glyphicon-screenshot fa-4x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="BSIndex-shortcutTitle">平台监控</div>
+                            <div>基于网络实时监控数据的变化情况</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#platformMonitor/HostMonitor.html">
+                    <div class="panel-footer">
+                        <span class="pull-left">进入平台监控首页</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据接入状态监控
+                    <div class="pull-right">
+                        <div class="form-group" id="BINowTimeBox">
+                            <label class="fontSize16">当前时间：</label>
+                            <input type="text" class="form-control fontSize16" id="BIDateInput" value="" />
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+                
+                <div class="panel-body dataAccessSituation-lineBody">
+                    <div id="dataAccessSituation-lineChart" style="width:100%;max-width:1540px;height:400px"></div>
+
+                    <p id="dataAccessClassify-btnBox">
+                        <span>接入中的数据选择：</span>
+                        <button type="button" class="btn btn-info">总数</button>
+                        <button type="button" class="btn btn-default">A</button>
+                        <button type="button" class="btn btn-default">B</button>
+                        <button type="button" class="btn btn-default">C</button>
+                        <button type="button" class="btn btn-default">D</button>
+                        <button type="button" class="btn btn-default">E</button>
+                        <button type="button" class="btn btn-default">F</button>
+                        <button type="button" class="btn btn-default">G</button>
+                        <button type="button" class="btn btn-default">H</button>
+                        <button type="button" class="btn btn-default">I</button>
+                    </p>
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading fontSize24">
+                    <i class="fa fa-bar-chart-o fa-fw"></i> 数据存储情况统计
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                                Actions
+                                <span class="caret"></span>
+                            </button>
+                            <ul class="dropdown-menu pull-right" role="menu">
+                                <li><a href="#">Action</a>
+                                </li>
+                                <li><a href="#">Another action</a>
+                                </li>
+                                <li><a href="#">Something else here</a>
+                                </li>
+                                <li class="divider"></li>
+                                <li><a href="#">Separated link</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.panel-heading -->
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="alert alert-warning">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <th rowspan="2" class="fontSize18">hbase<br>存储信息</th>
+                                            <th>物理存储总量（TB）</th>
+                                            <th>当日增加物理存储量（GB）</th>
+                                            <th>总表数（个）</th>
+                                        </tr>
+                                        <tr>
+                                            <td>450</td>
+                                            <td>25</td>
+                                            <td>32</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="alert alert-warning">
+                                <div class="table-responsive">
+                                    <table class="table table-bordered table-hover table-striped">
+                                        <tbody>
+                                        <tr>
+                                            <th rowspan="2" class="fontSize18">hive<br>存储信息</th>
+                                            <th>物理存储总量（TB）</th>
+                                            <th>当日增加物理存储量（GB）</th>
+                                            <th>总表数（个）</th>
+                                        </tr>
+                                        <tr>
+                                            <td>540</td>
+                                            <td>32</td>
+                                            <td>22</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 physicalStorage-barBody">
+                            <div id="physicalStorage-barChart" style="width:100%;max-width:740px;height:400px"></div>
+                        </div>
+
+                        <div class="col-lg-6 totalDataRecord-barBody">
+                            <div id="totalDataRecord-barChart" style="width:100%;max-width:740px;height:400px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    (function () {
+
+        /* 数据接入情况小时变化曲线 */
+        var dataAccessSituationChart = initDASChart();
+
+        /* 首页数据接入情况小时变化曲线-底部控制按钮切换效果 */
+        $('#dataAccessClassify-btnBox').on('click', '.btn', function () {
+            var txt = $(this).text();
+            $(this).addClass('btn-info').siblings().removeClass('btn-info').addClass('btn-default');
+
+            dataAccessSituationChart._disposeChart();
+            dataAccessSituationChart = initDASChart(txt, changeDASChartDate(txt));
+        });
+
+        /* 七天物理存储量变化柱形图 */
+        var physicalStorageChart = new MyEcharts({
+            DOMId: 'physicalStorage-barChart',
+            option: {
+                titleText: '七天物理存储量变化图',
+                legendDataList: ['hbase','hive'],
+                xAxisDataKey: 'date',
+                yAxisName: '物理存储量（GB）',
+                series: [
+                    {
+                        name: 'hbase',
+                        type: 'bar',
+                        dataKey: 'hbase'
+                    },
+                    {
+                        name: 'hive',
+                        type: 'bar',
+                        dataKey: 'hive'
+                    }
+                ],
+                dataZoomShow: true,
+                xAxisBoundaryGap: true,
+                yAxisScale: false,
+                seriesShowMark: true,
+                seriesShowAverage: true
+            },
+            dataUrl: '../../server/physicalStorageData.json',
+            theme: 'macarons'
+        });
+
+        /* 七天逐日数据记录总量变化柱形图 */
+        var totalDataRecordChart = new MyEcharts({
+            DOMId: 'totalDataRecord-barChart',
+            option: {
+                titleText: '七天逐日数据记录总量变化图',
+                legendDataList: ['hbase','hive'],
+                xAxisDataKey: 'date',
+                yAxisName: '数据记录总量（TB）',
+                series: [
+                    {
+                        name: 'hbase',
+                        type: 'bar',
+                        dataKey: 'hbase'
+                    },
+                    {
+                        name: 'hive',
+                        type: 'bar',
+                        dataKey: 'hive'
+                    }
+                ],
+                dataZoomShow: true,
+                xAxisBoundaryGap: true,
+                yAxisScale: false,
+                seriesShowMark: true,
+                seriesShowAverage: true
+            },
+            dataUrl: '../../server/totalDataRecordData.json',
+            theme: 'macarons'
+        });
+
+        /* 设置日期表格 */
+        $('.datetimepicker').remove();
+        var $BIDateInput = $('#BIDateInput');
+        $BIDateInput.datetimepicker({
+            format: 'yyyy-mm-dd hh:ii:ss',
+            language:  'zh-CN',
+            weekStart: 1,
+            todayBtn:  1,
+            autoclose: 1,
+            todayHighlight: 1,
+            startView: 2,
+            minView: 0,
+            forceParse: 0
+        });
+
+        /* 实现展示当前时间功能 */
+        $BIDateInput.val(getNowDate());
+        var BINowTimer = null;
+        (function () {
+            clearInterval(BINowTimer);
+            BINowTimer = setInterval(function () {
+                $BIDateInput.val(getNowDate());
+            }, 1000);
+        })();
+
+    })();
+</script>
